@@ -5,17 +5,17 @@ import java.util.Scanner;
 class ToDoList {
 
     Task task;
-   // ToDoMenu menu = new ToDoMenu();
+    // ToDoMenu menu = new ToDoMenu();
 
-
-    ArrayList <Task> tasks = new ArrayList<Task>();
+    ArrayList<Task> tasks = new ArrayList<Task>();
     Scanner input = new Scanner(System.in);
     boolean repeat = true;
     String repeat2;
     String impor;
-    void addTask () {
-        int count =0;
-        boolean important= true;
+
+    void addTask() {
+
+        boolean important = true;
         while (repeat) {
             System.out.print("Enter your task: ");
             String taskName = input.nextLine();
@@ -31,38 +31,41 @@ class ToDoList {
             }
 
 
-            System.out.println("여긴가?");
-            count++;
-            tasks.add(new Task(taskName,taskDate,important));
+            tasks.add(new Task(taskName, taskDate, important));
 
             System.out.println("Do you want to add another task? (Y/N): ");
             repeat2 = input.next();
             input.nextLine();
             if (repeat2.equalsIgnoreCase("n")) {
-            repeat = false;
+                repeat = false;
             }
 
-
-
         }
-
-
-
-       // Task t1 = new Task("할일1", "10/3까지", false);
-        //Task t2 = new Task("할일2", "10/4까지", false);
-        //tasks.add(t1);
-        //tasks.add(t2);
 
         for (Task t : tasks) {
             System.out.println(t.toString());
         }
-        //menu.readInput();
+
+    }
+
+    void readInput() {
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                addTask();
+
+                break;
+            case 2:
+                System.out.println("chose 2 haha");
+                break;
+            case 3:
+                System.out.println("chose 3 haha");
+                break;
+
+        }
     }
 
 
-
-
-
 }
-
-
