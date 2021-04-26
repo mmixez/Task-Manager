@@ -1,10 +1,12 @@
+package view;
+
 import java.util.Scanner;
 
 class ToDoMenu {
 
-    //ToDoList todoList = new ToDoList ();
+    //model.ToDoList todoList = new model.ToDoList ();
 
-    private String menuPrompt = "1: Add Task\n2: Delete Task\n3: Complete Task\nEnter Your Choice: ";
+    private String menuPrompt = "1: Add model.Task\n2: Delete model.Task\n3: Complete model.Task\nEnter Your Choice: ";
     int menuNum;
 
     public String getMenuPrompt() {
