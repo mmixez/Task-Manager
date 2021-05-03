@@ -5,15 +5,16 @@ import model.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class ToDoList {
 
     Task task;
     // ToDoMenu menu = new ToDoMenu();
 
     public static ArrayList<Task> tasks = new ArrayList<Task>();
-//    Scanner input = new Scanner(System.in);
-//    boolean repeat = true;
-//    String repeat2;
+    Scanner input = new Scanner(System.in);
+    boolean repeat = true;
+    String repeat2;
 //    String impor;
 
     public static void addTask(Task t){
@@ -54,7 +55,7 @@ public class ToDoList {
 //        }
 //
 //    }
-//
+
 //    void readInput() {
 //        Scanner input = new Scanner(System.in);
 //        int choice = input.nextInt();

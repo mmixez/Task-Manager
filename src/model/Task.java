@@ -48,10 +48,10 @@ public class Task implements TaskInterface{
 //        return num;
 //    }
 
-    @Override
-    public String toString() {
-        return "model.Task#" + getNum() + " " + name +" Dead Line: "+ deadLine
-                + " Important?: ";
-    }
+//    @Override
+//    public String toString() {
+//        return "model.Task#" + getNum() + " " + name +" Dead Line: "+ deadLine
+//                + " Important?: ";
+//    }
 
 }

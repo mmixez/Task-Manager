@@ -58,13 +58,15 @@ public class PopUpWindow extends JFrame {
     JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
     add(datePicker);
-    datePicker.setBounds(100, 500, 100, 100);
+    datePicker.setBounds(100, 500, 200, 100);
 
 
     JButton okButton = new JButton("OK");
     okButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e){
-       ToDoList.addTask(new Task("3", "4", true));
+       ToDoList.addTask(new Task(taskName.getText(),details.getText(),
+               datePicker.getJFormattedTextField().getText()));
+
        dispose();
       }
     });
