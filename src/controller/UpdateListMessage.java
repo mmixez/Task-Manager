@@ -2,8 +2,9 @@ package controller;
 
 public class UpdateListMessage implements Message{
 
-    // Controller updates the sidebar if we want to show only important tasks
-
+    /*
+    / Controller updates the sidebar if we want to show only important tasks
+    */
     private boolean showImportant;
     public UpdateListMessage(boolean showImportant){
         this.showImportant = showImportant;

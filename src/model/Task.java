@@ -1,15 +1,19 @@
 package model;
 
+/*
+*   Create a task with name, details and deadline
+*/
+
 public class Task implements TaskInterface{
     private String name;
     private String deadLine;
+
    // private boolean isImportant;
     private String details;
     static int count;
     int num;
 
 
-    // Create a task with name, details and deadline.
 
     public Task(String name,String details,String deadLine) {
         this.name = name;

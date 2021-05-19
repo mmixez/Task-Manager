@@ -3,8 +3,9 @@ package model;
 import java.util.ArrayList;
 
 
-//Holds tasks as database.
-
+/*
+/ Holds tasks as database.
+*/
 
 public class ToDoList {
 

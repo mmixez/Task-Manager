@@ -8,8 +8,9 @@ public class CreateMessage implements Message{
      String date;
      boolean important;
 
-     // Message sent to the controller to create a new task that will be added to the ToDolist
-
+     /*
+     / Message sent to the controller to create a new task that will be added to the ToDolist
+     */
     public CreateMessage(String taskName, String details, String date, boolean important) {
         this.taskName = taskName;
         this.details = details;

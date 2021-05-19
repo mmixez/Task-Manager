@@ -2,8 +2,9 @@ package model;
 
 public interface TaskInterface {
 
-    // Interface used for implementing task and important tasks
-
+    /*
+    /Interface used for implementing task and important task
+    */
     public String getName();
     public String getDetails();
     public String getDeadLine();

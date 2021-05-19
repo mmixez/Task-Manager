@@ -3,8 +3,9 @@ package model;
 public class ImportantTask implements TaskInterface{
 private TaskInterface task;
 
-// Marking tasks important
-
+/*
+/ Create important tasks
+*/
 
 public ImportantTask(TaskInterface task) {
     this.task = task;

@@ -13,10 +13,10 @@ import java.util.concurrent.BlockingQueue;
 
 public class Controller {
 
-
-//  Controller that controls creating, removing, updating message and message list.
- //  Valve implemented.
-
+/*
+ /  Controller that controls creating, removing, updating message and message list.
+ /  Valve implemented.
+*/
     static BlockingQueue<Message> queue;
     public ToDoList list;
     public MainView view;

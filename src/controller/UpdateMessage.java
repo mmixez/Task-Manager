@@ -4,9 +4,9 @@ package controller;
 import model.TaskInterface;
 
 
-
-// If we need to edit the task name, the details, the date, and importance, message sent to controller
-
+/*
+/ If we need to edit the task name, the details, the date, and importance, message sent to controller
+*/
 public class UpdateMessage implements Message{
     
     private String taskName;
