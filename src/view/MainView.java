@@ -1,6 +1,9 @@
 package view;
 
-import model.Task;
+import controller.Controller;
+import controller.UpdateListMessage;
+import model.ImportantTask;
+
 import model.ToDoList;
 
 import javax.swing.*;
@@ -9,60 +12,85 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.text.ParseException;
+
+
+
 
 public class MainView extends JFrame {
     private JList list;
+    private SideBar sb;
+    private boolean showImportant;
 
     public MainView() {
 
-        //JTextField input = new JTextField(50);
-        //JPanel topPanel = new JPanel();
-//        JPanel panel = new JPanel();
-//        JPanel topPanel = new JPanel();
-//
-//
-//        JLabel topLabel = new JLabel("TOP LABEL");
-//        panel.add(topLabel,BorderLayout.NORTH);
-//        JLabel leftLabel = new JLabel("LEFT LABEL");
-//        JButton addButton = new JButton("ADD");
-//        JTextArea txtArea = new JTextArea("TXT AREA ......");
-//
-//        panel.setLayout(new BorderLayout());
-//
-//        panel.add(leftLabel,BorderLayout.WEST);
-//        panel.add(addButton,BorderLayout.NORTH);
-//
-//        panel.add(txtArea, BorderLayout.CENTER);
-//        add(panel);
+        /*
+        * Main page. Create a list board that contains a list of the tasks. When you click on the task, it displays
+        * the information on the right side board. When you double click the task, a popup window appears so
+        * the user can edit the information.
+        *
+        * */
 
-
-        //input.setBounds(100, 100, 600, 50);
-        //add(input);
-        getContentPane().setBackground(Color.darkGray);
+        showImportant = false;
+        getContentPane().setBackground(Color.lightGray);
         DefaultListModel dfModel = new DefaultListModel();
         for (int i = 0; i < ToDoList.tasks.size(); i++) {
             dfModel.addElement(ToDoList.tasks.get(i).getName());
         }
         list = new JList(dfModel);
+        MainView current = this;
+        sb = new SideBar();
+        sb.setBounds(400,0,400,600);
+        sb.setVisible(true);
+        current.add(sb);
+
+
+        /*
+        * When an index of the JList is clicked, it makes sure the corresponding option is clicked.
+        * */
+
+
         list.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JList list = (JList) e.getSource();
                 int index = list.getSelectedIndex();
+                if (showImportant) {
+                    int count = 0;
+                    for (int i = 0; i < ToDoList.tasks.size();i++) {
+                        if (ToDoList.tasks.get(i).getClass()== ImportantTask.class) {
+                            count++;
+                            if (count == index) {
+                                index = i;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (e.getClickCount() == 2) {
+                    try {
+                        new PopUpWindow(current, sb, ToDoList.tasks.get(index));
+                    } catch (ParseException parseException) {
+                        parseException.printStackTrace();
+                    }
 
-                popUp(ToDoList.tasks.get(index));
-
+                }
+                sb.update(ToDoList.tasks.get(index));
+                current.update();
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
 
+
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                JList list = (JList) e.getSource();
+                int index = list.getSelectedIndex();
+                sb.update(ToDoList.tasks.get(index));
+                current.update();
             }
 
             @Override
@@ -76,49 +104,35 @@ public class MainView extends JFrame {
             }
         });
 
-        list.setBounds(100, 300, 300, 500);
+        list.setBounds(0, 0, 400, 600);
         add(list);
 
 
         JButton addButton = new JButton("ADD TASK");
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new PopUpWindow();
+                new PopUpWindow(current);
             }
         });
         add(addButton);
-        addButton.setBounds(30, 100, 100, 100);
+        addButton.setBounds(200, 700, 170, 60);
+
+        JButton updateListButton = new JButton("IMPORTANT ONLY");
+        updateListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showImportant = !showImportant;
+                Controller.addToQueue(new UpdateListMessage(showImportant));
+            }
+        });
+        add(updateListButton);
+        updateListButton.setBounds(430,700,170,60);
 
 
-        //JButton refreshButton = new JButton("Refresh");
-//        refreshButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e){
-//                ArrayList<String> stringsArrayList = new ArrayList<>();
-//                MainList list = new MainList(stringsArrayList.toArray());
-//                for(Task t: ToDoList.tasks)
-//                    stringsArrayList.add(t.getName());
-//                }
-//            }
-//        );
-        //add(refreshButton);
-
-
-//
-//        refreshButton.setBounds(500, 700, 100, 100);
-//        refreshButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                ArrayList<String> stringsArrayList = new ArrayList<>();
-//                for(Task t: ToDoList.tasks){
-//                  //  list.a;
-//                }
-//
-//            }
-//        });
         setLayout(null);
         setResizable(false);
-        setPreferredSize(new Dimension(1000, 800));
-        setSize(1000, 1000);
+        setPreferredSize(new Dimension(800, 800));
+        setSize(800, 900);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,14 +140,23 @@ public class MainView extends JFrame {
 
 
     public void update() {
-
+    invalidate();
+    revalidate();
+    repaint();
+    }
+    public JList getList() {
+        return list;
     }
 
-    public void popUp() {
-        new PopUpWindow();
+    public SideBar getSideBar() {
+        return sb;
     }
-    public void popUp(Task t) {
-        new PopUpWindow();
-    }
+
+//    public void popUp() {
+//        new PopUpWindow();
+//    }
+//    public void popUp(Task t) {
+//        new PopUpWindow();
+//    }
 
 }

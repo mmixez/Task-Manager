@@ -1,9 +1,9 @@
 package model;
 
-import model.Task;
-
 import java.util.ArrayList;
-import java.util.Scanner;
+
+
+//Holds tasks as database.
 
 
 public class ToDoList {
@@ -11,15 +11,17 @@ public class ToDoList {
     Task task;
     // ToDoMenu menu = new ToDoMenu();
 
-    public static ArrayList<Task> tasks = new ArrayList<Task>();
-    Scanner input = new Scanner(System.in);
-    boolean repeat = true;
-    String repeat2;
+    public static ArrayList<TaskInterface> tasks = new ArrayList<>();
+    //Scanner input = new Scanner(System.in);
+    //boolean repeat = true;
+    //String repeat2;
 //    String impor;
 
-    public static void addTask(Task t){
+    public static void addTask(TaskInterface t){
         tasks.add(t);
     }
+
+
 
 //    void addTask() {
 //
@@ -74,6 +76,8 @@ public class ToDoList {
 //
 //        }
 //    }
+
+
 
 
 }

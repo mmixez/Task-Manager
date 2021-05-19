@@ -3,33 +3,47 @@ package controller;
 public class CreateMessage implements Message{
 
 
-    private String taskName;
-    private String details;
-    private String date;
+     String taskName;
+     String details;
+     String date;
+     boolean important;
 
-    public void setTaskName(String taskName) {
+     // Message sent to the controller to create a new task that will be added to the ToDolist
+
+    public CreateMessage(String taskName, String details, String date, boolean important) {
         this.taskName = taskName;
-    }
-
-    public void setDetails(String details) {
         this.details = details;
+        this.date = date;
+        this.important = important;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+//    public void setTaskName(String taskName) {
+//        this.taskName = taskName;
+//    }
+//
+//    public void setDetails(String details) {
+//        this.details = details;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
     public String getTaskName() {
         return taskName;
     }
 
-    @Override
+
     public String getDetails() {
         return details;
     }
 
-    @Override
+
     public String getDate() {
         return date;
+    }
+
+    public boolean getImportant() {
+        return important;
     }
 }
