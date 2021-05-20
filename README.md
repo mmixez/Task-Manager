@@ -1,4 +1,4 @@
-# ToDoList
+# Task Manager
 
 Building a Swing based task manager application
 
